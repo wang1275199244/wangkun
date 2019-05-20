@@ -15,6 +15,12 @@ public class Train implements Serializable {
     public Train() {
     }
 
+    public Train(String title, String content, Integer state) {
+        this.title = title;
+        this.content = content;
+        this.state = state;
+    }
+
     public Integer getId() {
         return id;
     }

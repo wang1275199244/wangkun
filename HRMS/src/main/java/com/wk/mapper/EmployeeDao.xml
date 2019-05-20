@@ -33,6 +33,9 @@
     <select id="getEmployeeByDepid" parameterType="Integer" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_DEP_ID = #{depid}
     </select>
+    <select id="getEmployeeById" resultMap="employeeMap">
+        select * from T_EMPLOYEE where EMP_ID = #{id}
+    </select>
 
     <resultMap id="employeeMap" type="Employee">
         <id property="id" column="EMP_ID"/>

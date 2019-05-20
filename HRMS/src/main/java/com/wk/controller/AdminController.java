@@ -361,16 +361,6 @@ public class AdminController {
         return "forward:toShowDepartment";
     }
 
-    //查看培训信息
-    @RequestMapping("toShowTrain")
-    protected String toShowTrain(@RequestParam(name = "currentPage", required = false) Integer currentPage, HttpServletRequest request,HttpServletResponse response) throws Exception {
-        response.setHeader("Content-Type", "text/html;charset=UTF-8");
-        String status = "0";
-        String status1 = request.getParameter("status");
-        if (status1 != null) {
-            status = status1;
-        }
 
-        return "showTrain";
-    }
+
 }

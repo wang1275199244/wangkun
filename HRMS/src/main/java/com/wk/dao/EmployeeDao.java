@@ -11,4 +11,5 @@ public interface EmployeeDao {
     Employee getEmployee(Employee employee);
     List<Employee> getEmployeeByPid(Integer pid);
     List<Employee> getEmployeeByDepid(Integer depid);
+    Employee getEmployeeById(Integer id);
 }
