@@ -239,13 +239,6 @@ public class RecruitmentController {
             invitationService.updateInvitation(invitation);
             Integer riid = (Integer) session.getAttribute("appRiid");
             Integer rid = (Integer) session.getAttribute("appRid");
-            System.out.println("=================");
-            System.out.println("=================");
-            System.out.println("=================");
-            System.out.println("=================");
-            System.out.println("=================");
-            System.out.println("=================");
-            System.out.println(riid +"================="+rid);
             if(riid != null&&rid != null&&riid != 0&&rid != 0) {
                 JobApplication jobApplication = jobApplicationService.getJobApplicationByRiidAndRid(riid, rid);
                 if(jobApplication != null){

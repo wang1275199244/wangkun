@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,8 @@ public class AdminController {
     private PositionService positionService;
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private TrainService trainService;
 
     //管理员登录部分
     @RequestMapping("toAdminLogin")
@@ -356,5 +359,18 @@ public class AdminController {
             positionService.delPosition(position);
         }
         return "forward:toShowDepartment";
+    }
+
+    //查看培训信息
+    @RequestMapping("toShowTrain")
+    protected String toShowTrain(@RequestParam(name = "currentPage", required = false) Integer currentPage, HttpServletRequest request,HttpServletResponse response) throws Exception {
+        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+        String status = "0";
+        String status1 = request.getParameter("status");
+        if (status1 != null) {
+            status = status1;
+        }
+
+        return "showTrain";
     }
 }

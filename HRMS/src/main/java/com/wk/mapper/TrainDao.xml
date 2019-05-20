@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.TrainDao">
+
+    <insert id="addTrain">
+        insert into T_TRAIN (TR_TITLE, TR_CONTENT, TR_START_TIME, TR_END_TIME, TR_PLACE,TR_EMP_ID,TR_STATE) VALUES (#{title},#{content},#{startTime},#{endTime},#{place},#{empid},#{state})
+    </insert>
+
+    <update id="updateTrain">
+        update T_TRAIN
+         set TR_TITLE = #{title},
+          TR_CONTENT = #{content},
+           TR_START_TIME = #{startTime},
+            TR_END_TIME = #{endTime},
+             TR_PLACE = #{place},
+              TR_EMP_ID = #{empid},
+                TR_STATE = #{state}
+                  where TR_ID = #{id}
+
+    </update>
+
+    <delete id="delTrain">
+        delete from T_TRAIN where TR_ID = #{id}
+    </delete>
+
+    <select id="getTrainById" resultMap="trainMap">
+        select * from T_TRAIN where TR_ID = #{id}
+    </select>
+
+    <select id="getTrainByEmpid" resultMap="trainMap">
+        select * from T_TRAIN where TR_EMP_ID = #{empid}
+    </select>
+    <select id="getALLTrains" resultMap="trainMap">
+        select * from T_TRAIN
+    </select>
+    <select id="getTrainByState" resultMap="trainMap">
+        select * from T_TRAIN where TR_STATE = #{state}
+    </select>
+
+    <resultMap id="trainMap" type="Train">
+        <id property="id" column="TR_ID"/>
+        <result property="title" column="TR_TITLE"/>
+        <result property="content" column="TR_CONTENT"/>
+        <result property="startTime" column="TR_START_TIME"/>
+        <result property="endTime" column="TR_END_TIME"/>
+        <result property="place" column="TR_PLACE"/>
+        <result property="state" column="TR_STATE"/>
+        <result property="empid" column="TR_EMP_ID"/>
+    </resultMap>
+</mapper>

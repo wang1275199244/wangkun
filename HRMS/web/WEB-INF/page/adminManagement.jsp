@@ -24,14 +24,14 @@
     <table>
         <tr>
             <th>招聘</th>
-            <th><a href="">培训</a></th>
+            <th>培训</th>
             <th>部门管理</th>
             <th><a href="">考勤</a></th>
             <th><a href="">薪资</a></th>
         </tr>
         <tr>
             <td><a href="toShowAllRI">招聘信息</a></td>
-            <td></td>
+            <td><a href="toShowTrain">查看培训信息</a></td>
             <td><a href="toShowDepartment">部门</a></td>
         </tr>
         <tr>
