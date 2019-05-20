@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xd1810.dao.RealStockDao">
+    <insert id="addRealStock">
+        insert into realstock (gid,gcount) value (#{gid},#{gcount})
+    </insert>
+
+    <update id="updateRealStock">
+        update realstock set gcount=#{gcount} where gid=#{gid}
+    </update>
+
+    <select id="getRealStockByGid" parameterType="Integer" resultType="com.xd1810.model.RealStock">
+        select * from realstock where gid = #{gid}
+    </select>
+</mapper>
