@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.ResumeDao">
+
+    <insert id="addResume">
+        insert into T_RESUME (R_NAME, R_SEX, R_BIRTHDATE, R_NATIONAL, R_DEGREE, R_MARITAL_STATUS, R_GRADUATE_SCHOOL, R_RESIDENT, R_MAJOR, R_PLITICS_STATUS, R_PHONE, R_EMAIL, R_OBJECTIVE, R_CERTIFICATE, R_WORK_EXPERIENCE, R_SELF_ASSESSMENT, R_V_ID) VALUES (#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{birthDate,jdbcType=VARCHAR},#{national,jdbcType=VARCHAR},#{degree,jdbcType=VARCHAR},#{maritalStatus,jdbcType=VARCHAR},#{graduateSchool,jdbcType=VARCHAR},#{resident,jdbcType=VARCHAR},#{major,jdbcType=VARCHAR},#{pliticsStatus,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{objective,jdbcType=VARCHAR},#{certificate,jdbcType=VARCHAR},#{workExperience,jdbcType=VARCHAR},#{selfAssessment,jdbcType=VARCHAR},#{vid,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateResume">
+        update T_RESUME SET R_NAME = #{name,jdbcType=VARCHAR},R_SEX = #{sex,jdbcType=VARCHAR}, R_BIRTHDATE = #{birthDate,jdbcType=VARCHAR}, R_NATIONAL = #{national,jdbcType=VARCHAR}, R_DEGREE = #{degree,jdbcType=VARCHAR}, R_MARITAL_STATUS = #{maritalStatus,jdbcType=VARCHAR}, R_GRADUATE_SCHOOL = #{graduateSchool,jdbcType=VARCHAR}, R_RESIDENT = #{resident,jdbcType=VARCHAR}, R_MAJOR = #{major,jdbcType=VARCHAR}, R_PLITICS_STATUS = #{pliticsStatus,jdbcType=VARCHAR}, R_PHONE = #{phone,jdbcType=VARCHAR}, R_EMAIL = #{email,jdbcType=VARCHAR}, R_OBJECTIVE = #{objective,jdbcType=VARCHAR}, R_CERTIFICATE = #{certificate,jdbcType=VARCHAR}, R_WORK_EXPERIENCE = #{workExperience,jdbcType=VARCHAR}, R_SELF_ASSESSMENT = #{selfAssessment,jdbcType=VARCHAR}, R_V_ID = #{vid,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delResume">
+        delete from T_RESUME where R_ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="getResumeById" parameterType="Integer" resultMap="resumeMap">
+        select * from T_RESUME where R_ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getResumeByVid" parameterType="Integer" resultMap="resumeMap">
+        select * from T_RESUME where R_V_ID = #{vid,jdbcType=INTEGER}
+    </select>
+
+    <resultMap id="resumeMap" type="Resume">
+        <id property="id" column="R_ID"/>
+        <result property="name" column="R_NAME"/>
+        <result property="sex" column="R_SEX"/>
+        <result property="birthDate" column="R_BIRTHDATE"/>
+        <result property="national" column="R_NATIONAL"/>
+        <result property="degree" column="R_DEGREE"/>
+        <result property="maritalStatus" column="R_MARITAL_STATUS"/>
+        <result property="graduateSchool" column="R_GRADUATE_SCHOOL"/>
+        <result property="resident" column="R_RESIDENT"/>
+        <result property="major" column="R_MAJOR"/>
+        <result property="pliticsStatus" column="R_PLITICS_STATUS"/>
+        <result property="phone" column="R_PHONE"/>
+        <result property="email" column="R_EMAIL"/>
+        <result property="objective" column="R_OBJECTIVE"/>
+        <result property="certificate" column="R_CERTIFICATE"/>
+        <result property="workExperience" column="R_WORK_EXPERIENCE"/>
+        <result property="selfAssessment" column="R_SELF_ASSESSMENT"/>
+        <result property="vid" column="R_V_ID"/>
+    </resultMap>
+
+</mapper>

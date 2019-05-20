@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.RecruitmentInformationDao">
+
+    <insert id="addRecruitmentInformation">
+      insert into T_RECRUITMENT_INFORMATION (RI_POSITION, RI_WORK_EXPERIENCE, RI_DEGREE_REQUIRED, RI_WORKING, RI_SALARY_RANGE, RI_RELEASE_DATE, RI_WORKPLACE, RI_WELFARE, RI_POSITION_DESCRIPTION, RI_COMPANY_INFORMATION, RI_STATE, RI_DEPARTMENT, RI_RECRUITING_NUMBERS) VALUES (#{position,jdbcType=VARCHAR},#{workExperience,jdbcType=VARCHAR},#{degreeRequired,jdbcType=VARCHAR},#{working,jdbcType=VARCHAR},#{salaryRange,jdbcType=VARCHAR},#{releaseDate,jdbcType=VARCHAR},#{workPlace,jdbcType=VARCHAR},#{welfare,jdbcType=VARCHAR},#{positionDescription,jdbcType=VARCHAR},#{companyInformation,jdbcType=VARCHAR},#{state,jdbcType=INTEGER},#{department,jdbcType=VARCHAR},#{recruitingNumbers,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateRecruitmentInformation">
+      update T_RECRUITMENT_INFORMATION
+       set RI_POSITION = #{position},
+        RI_WORK_EXPERIENCE = #{workExperience},
+         RI_DEGREE_REQUIRED = #{degreeRequired},
+          RI_WORKING = #{working},
+           RI_SALARY_RANGE = #{salaryRange},
+            RI_RELEASE_DATE = #{releaseDate},
+             RI_WORKPLACE = #{workPlace},
+             RI_WELFARE = #{welfare},
+              RI_POSITION_DESCRIPTION = #{positionDescription},
+               RI_COMPANY_INFORMATION = #{companyInformation},
+                RI_STATE = #{state},
+                 RI_DEPARTMENT = #{department},
+                 RI_RECRUITING_NUMBERS = #{recruitingNumbers}
+                  where RI_ID = #{id}
+    </update>
+
+    <delete id="delRecruitmentInformation">
+      delete from T_RECRUITMENT_INFORMATION where RI_ID = #{id}
+    </delete>
+
+    <select id="getAllRecruitmentInformations" resultMap="recruitmentInformationMap">
+      select * from T_RECRUITMENT_INFORMATION
+    </select>
+
+    <select id="getRecruitmentInformationsByState" parameterType="Integer" resultMap="recruitmentInformationMap">
+       select * from T_RECRUITMENT_INFORMATION where RI_STATE = #{state,jdbcType=INTEGER}
+    </select>
+
+    <select id="getRecruitmentInformationsById" parameterType="Integer" resultMap="recruitmentInformationMap">
+        select * from T_RECRUITMENT_INFORMATION where RI_ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <resultMap id="recruitmentInformationMap" type="RecruitmentInformation">
+        <id property="id" column="RI_ID"/>
+        <result property="position" column="RI_POSITION"/>
+        <result property="workExperience" column="RI_WORK_EXPERIENCE"/>
+        <result property="degreeRequired" column="RI_DEGREE_REQUIRED"/>
+        <result property="working" column="RI_WORKING"/>
+        <result property="salaryRange" column="RI_SALARY_RANGE"/>
+        <result property="releaseDate" column="RI_RELEASE_DATE"/>
+        <result property="workPlace" column="RI_WORKPLACE"/>
+        <result property="welfare" column="RI_WELFARE"/>
+        <result property="positionDescription" column="RI_POSITION_DESCRIPTION"/>
+        <result property="companyInformation" column="RI_COMPANY_INFORMATION"/>
+        <result property="department" column="RI_DEPARTMENT"/>
+        <result property="recruitingNumbers" column="RI_RECRUITING_NUMBERS"/>
+        <result property="state" column="RI_STATE"/>
+    </resultMap>
+</mapper>

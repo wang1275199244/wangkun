@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.InvitationDao">
+
+    <insert id="addInvitation">
+        insert into T_INVITATION (IN_INTERVIEWER, IN_COMPANY,IN_POSITION,IN_DEPARTMENT, IN_INTERVIEW_TIME, IN_PLACE, IN_CONTACT, IN_PHONE, IN_STATE,IN_V_ID) values (#{interviewer},#{company},#{position},#{department},#{interviewTime},#{place},#{contact},#{phone},#{state},#{vid})
+    </insert>
+
+    <update id="updateInvitation">
+        update T_INVITATION
+        set IN_INTERVIEWER = #{interviewer},
+        IN_COMPANY = #{company},
+        IN_POSITION = #{position},
+        IN_DEPARTMENT =#{department},
+         IN_INTERVIEW_TIME = #{interviewTime},
+          IN_PLACE = #{place},
+           IN_CONTACT = #{contact},
+           IN_PHONE = #{phone},
+            IN_STATE = #{state},
+            IN_V_ID = #{vid}
+            where IN_ID = #{id}
+    </update>
+
+    <delete id="delInvitation">
+        delete from T_INVITATION where IN_ID = #{id}
+    </delete>
+
+    <select id="getInvitationByState" parameterType="Integer" resultMap="invitationMap">
+        select * from T_INVITATION where IN_STATE = #{state}
+    </select>
+
+    <select id="getInvitationByVid" parameterType="Integer" resultMap="invitationMap">
+        select * from T_INVITATION where IN_V_ID = #{vid}
+    </select>
+    <select id="getInvitationById" parameterType="Integer" resultMap="invitationMap">
+        select * from T_INVITATION where IN_ID = #{id}
+    </select>
+
+    <resultMap id="invitationMap" type="Invitation">
+        <id property="id" column="IN_ID"/>
+        <result property="interviewer" column="IN_INTERVIEWER"/>
+        <result property="company" column="IN_COMPANY"/>
+        <result property="position" column="IN_POSITION"/>
+        <result property="department" column="IN_DEPARTMENT"/>
+        <result property="interviewTime" column="IN_INTERVIEW_TIME"/>
+        <result property="place" column="IN_PLACE"/>
+        <result property="contact" column="IN_CONTACT"/>
+        <result property="phone" column="IN_PHONE"/>
+        <result property="state" column="IN_STATE"/>
+        <result property="vid" column="IN_V_ID"/>
+    </resultMap>
+</mapper>

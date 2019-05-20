@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.JobApplicationDao">
+    <insert id="addJobApplication">
+        insert into T_JOB_APPLICATION (JA_RI_ID, JA_R_ID,JA_DATE,JA_STATE) values (#{riid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{state,jdbcType=INTEGER})
+    </insert>
+    <update id="updateJobApplication">
+        update T_JOB_APPLICATION
+        SET JA_ID = #{id,jdbcType=INTEGER},
+        JA_RI_ID = #{riid,jdbcType=INTEGER},
+        JA_DATE = #{date,jdbcType=VARCHAR},
+        JA_STATE = #{state,jdbcType=INTEGER}
+        WHERE JA_ID = #{id,jdbcType=INTEGER}
+    </update>
+    <delete id="delJobApplication">
+        delete from T_JOB_APPLICATION WHERE JA_ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="getJobApplicationByRiid" parameterType="Integer" resultMap="jobApplicationMap">
+        select * from T_JOB_APPLICATION where JA_RI_ID = #{riid,jdbcType=INTEGER}
+    </select>
+
+    <select id="getJobApplicationByRid" parameterType="Integer" resultMap="jobApplicationMap">
+        select * from T_JOB_APPLICATION where JA_R_ID = #{rid,jdbcType=INTEGER}
+    </select>
+    <select id="getJobApplicationByState" parameterType="Integer" resultMap="jobApplicationMap">
+        select * from T_JOB_APPLICATION where JA_STATE = #{state,jdbcType=INTEGER}
+    </select>
+    <select id="getAllJobApplications" resultMap="jobApplicationMap">
+        select * from T_JOB_APPLICATION
+    </select>
+    <select id="getJobApplicationByRiidAndRid" parameterType="Integer" resultMap="jobApplicationMap">
+        select * from T_JOB_APPLICATION where JA_RI_ID = #{0} and JA_R_ID = #{1}
+    </select>
+
+    <resultMap id="jobApplicationMap" type="JobApplication">
+        <id property="id" column="JA_ID"/>
+        <result property="riid" column="JA_RI_ID"/>
+        <result property="rid" column="JA_R_ID"/>
+        <result property="date" column="JA_DATE"/>
+        <result property="state" column="JA_STATE"/>
+    </resultMap>
+</mapper>

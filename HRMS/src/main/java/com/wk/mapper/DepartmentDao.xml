@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.DepartmentDao">
+
+    <insert id="addDepartment">
+        insert into T_DEPARTMENT (DEP_NAME, DEP_CREATE_TIME) VALUES (#{name},#{create_time})
+    </insert>
+
+    <update id="updateDepartment">
+        update T_DEPARTMENT set DEP_NAME = #{name},DEP_CREATE_TIME = #{create_time} where DEP_ID = #{id}
+    </update>
+
+    <delete id="delDepartment">
+        DELETE from T_DEPARTMENT where DEP_ID = #{id}
+    </delete>
+
+    <select id="getDepartmentById" parameterType="Integer" resultMap="departmentMap">
+        SELECT * FROM T_DEPARTMENT WHERE DEP_ID = #{id}
+    </select>
+
+    <select id="getAllDepartments" resultMap="departmentMap">
+        select * from T_DEPARTMENT
+    </select>
+
+    <select id="getDepartmentByName" parameterType="string" resultMap="departmentMap">
+        select * from T_DEPARTMENT where DEP_NAME = #{name}
+    </select>
+
+    <resultMap id="departmentMap" type="Department">
+        <id property="id" column="DEP_ID"/>
+        <result property="name" column="DEP_NAME"/>
+        <result property="create_time" column="DEP_CREATE_TIME"/>
+    </resultMap>
+
+</mapper>
