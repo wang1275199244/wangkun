@@ -53,13 +53,6 @@ public class TrainServiceImpl implements TrainService {
         return trainDao.getTrainById(id);
     }
 
-    public List<Train> getTrainByEmpid(Integer empid) {
-        if(empid == null){
-            return null;
-        }
-        return trainDao.getTrainByEmpid(empid);
-    }
-
     public List<Train> getALLTrains() {
         return trainDao.getALLTrains();
     }

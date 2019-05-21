@@ -9,7 +9,6 @@ public interface TrainService {
     boolean updateTrain(Train train);
     boolean delTrain(Train train);
     Train getTrainById(Integer id);
-    List<Train> getTrainByEmpid(Integer empid);
     List<Train> getALLTrains();
     List<Train> getTrainByState(Integer state);
 }

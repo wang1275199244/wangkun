@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.wk.model.TrainFand" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.wk.model.Train" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019/5/20 0020
@@ -37,8 +38,8 @@
         </div>
 
         <%
-            List<TrainFand> trainFands = (List<TrainFand>) session.getAttribute("tfs");
-            pageContext.setAttribute("list",trainFands);
+            List<Train> trains1 = (List<Train>) session.getAttribute("trains");
+            pageContext.setAttribute("list",trains1);
         %>
 
         <table>
@@ -47,40 +48,34 @@
                 <th>培训开始时间</th>
                 <th>培训结束时间</th>
                 <th>培训地点</th>
-                <th>员工姓名</th>
-                <th>职位</th>
-                <th>所属部门</th>
                 <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
             <c:if test="${list != null && fn:length(list) != 0}">
-                <c:forEach items="${list}" var="trainFand" varStatus="i">
+                <c:forEach items="${list}" var="train" varStatus="i">
                     <form action="" method="post">
                     <tr>
-                        <td><a href="toShowTrainDetail?id=${trainFand.id}">${trainFand.title}</a></td>
-                        <td>${trainFand.startTime}</td>
-                        <td>${trainFand.endTime}</td>
-                        <td>${trainFand.place}</td>
-                        <td>${trainFand.employee.realName}</td>
-                        <td>${trainFand.position}</td>
-                        <td>${trainFand.department}</td>
-                        <input type="hidden" name="id" value="${trainFand.id}">
-                        <c:if test="${trainFand.state == 0}">
+                        <td><a href="toShowTrainDetail?id=${train.id}">${train.title}</a></td>
+                        <td>${train.startTime}</td>
+                        <td>${train.endTime}</td>
+                        <td>${train.place}</td>
+                        <input type="hidden" name="id" value="${train.id}">
+                        <c:if test="${train.state == 0}">
                             <td>未发布</td>
-                            <td><input type="submit" value="发布"></td>
-                            <td><input type="submit" value="修改"></td>
-                            <td><input type="submit" value="删除"></td>
+                            <td><input type="submit" formaction="toReleaseTrain" value="发布"></td>
+                            <td><input type="submit" formaction="toUpdateTrain" value="修改"></td>
+                            <td><input type="submit" formaction="toDelTrain" value="删除"></td>
                         </c:if>
 
-                        <c:if test="${trainFand.state == 1}">
+                        <c:if test="${train.state == 1}">
                             <td>已发布</td>
                         </c:if>
 
-                        <c:if test="${trainFand.state == 2}">
+                        <c:if test="${train.state == 2}">
                             <td>已培训</td>
-                            <td><input type="submit" formaction="toDelTrain" value="删除"></td>
+                            <td><input type="submit" formaction="toDelTrain1" value="删除"></td>
                         </c:if>
 
                     </tr>

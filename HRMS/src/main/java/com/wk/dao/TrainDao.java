@@ -9,7 +9,6 @@ public interface TrainDao {
     int updateTrain(Train train);
     int delTrain(Train train);
     Train getTrainById(Integer id);
-    List<Train> getTrainByEmpid(Integer empid);
     List<Train> getALLTrains();
     List<Train> getTrainByState(Integer state);
 

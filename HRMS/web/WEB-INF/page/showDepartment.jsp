@@ -144,7 +144,7 @@
                         </c:if>
                     </select>
                 </p>
-            </form>
+
             <p>
                 <label>职位:</label>
                 <select name="position" id="pos">

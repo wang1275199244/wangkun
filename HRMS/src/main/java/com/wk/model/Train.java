@@ -9,7 +9,6 @@ public class Train implements Serializable {
     private String startTime;//开始时间
     private String endTime;//结束时间
     private String place;//地点
-    private Integer empid;
     private Integer state;//0.存入草稿1.发布为培训状态3.培训完成
 
     public Train() {
@@ -69,14 +68,6 @@ public class Train implements Serializable {
         this.place = place;
     }
 
-    public Integer getEmpid() {
-        return empid;
-    }
-
-    public void setEmpid(Integer empid) {
-        this.empid = empid;
-    }
-
     public Integer getState() {
         return state;
     }
@@ -94,7 +85,6 @@ public class Train implements Serializable {
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
                 ", place='" + place + '\'' +
-                ", empid=" + empid +
                 ", state=" + state +
                 '}';
     }
