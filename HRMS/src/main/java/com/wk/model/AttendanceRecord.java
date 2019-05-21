@@ -14,6 +14,10 @@ public class AttendanceRecord implements Serializable {
     public AttendanceRecord() {
     }
 
+    public AttendanceRecord(String clockIn) {
+        this.clockIn = clockIn;
+    }
+
     public AttendanceRecord(String clockIn, String clockOut, Integer empid, Integer state) {
         this.clockIn = clockIn;
         this.clockOut = clockOut;

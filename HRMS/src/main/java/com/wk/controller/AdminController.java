@@ -153,7 +153,7 @@ public class AdminController {
     }
 
     @RequestMapping("toDelInformation")
-    protected String toDelInformation(@RequestParam(name = "id", required = false) Integer id, HttpServletResponse response) throws Exception {
+    protected String toDelInformation(@RequestParam(name = "id", required = false) Integer id) throws Exception {
 
         RecruitmentInformation recruitmentInformation = recruitmentInformationService.getRecruitmentInformationsById(id);
         if(recruitmentInformation != null){
@@ -185,7 +185,7 @@ public class AdminController {
     //获得员工
     @RequestMapping("getEmployees")
     @ResponseBody
-    protected List<Employee> getEmployees(Integer pid, HttpServletResponse response, HttpSession session) throws Exception {
+    protected List<Employee> getEmployees(Integer pid, HttpServletResponse response) throws Exception {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
 
         if(pid != null&&pid != 0){

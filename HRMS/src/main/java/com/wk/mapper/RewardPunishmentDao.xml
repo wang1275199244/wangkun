@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.RewardPunishmentDao">
+
+    <insert id="addRewardPunishment">
+        insert into T_REWARD_PUNISHMENT (RP_EMP_ID, RP_CAUSE, RP_MONEY, RP_DATE) values (#{empid},#{cause},#{bonus},#{bonusDate})
+    </insert>
+
+    <update id="updateRewardPunishment">
+        update T_REWARD_PUNISHMENT
+        set RP_EMP_ID = #{empid},
+         RP_CAUSE = #{cause},
+          RP_MONEY = #{bonus},
+           RP_DATE = #{bonusDate}
+           where RP_ID = #{id}
+    </update>
+
+    <delete id="delRewardPunishment">
+        delete from T_REWARD_PUNISHMENT where RP_ID = #{id}
+    </delete>
+
+    <select id="getRewardPunishmentByEmpid" resultMap="rpMap">
+        select * from T_REWARD_PUNISHMENT where RP_EMP_ID = #{empid}
+    </select>
+
+    <resultMap id="rpMap" type="RewardPunishment">
+        <id property="id" column="RP_ID"/>
+        <result property="empid" column="RP_EMP_ID"/>
+        <result property="cause" column="RP_CAUSE"/>
+        <result property="bonus" column="RP_MONEY"/>
+        <result property="bonusDate" column="RP_DATE"/>
+    </resultMap>
+</mapper>

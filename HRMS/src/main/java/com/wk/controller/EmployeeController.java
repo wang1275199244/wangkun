@@ -45,6 +45,12 @@ public class EmployeeController {
         }
     }
 
+    @RequestMapping("toEmployeeInformation")
+    protected String toEmployeeInformation()throws Exception {
+        return "employeeInformation";
+
+    }
+
     @RequestMapping("toShowAddressList")
     protected String toShowAddressList(HttpServletResponse response,HttpSession session)throws Exception{
         response.setHeader("Content-Type", "text/html;charset=UTF-8");

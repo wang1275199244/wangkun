@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.SessionDao">
+    <insert id="addSession">
+        insert into T_SESSION (SE_TR_ID, SE_EMP_ID) values (#{trid},#{empid})
+    </insert>
+
+    <delete id="delSession">
+        delete from T_SESSION where SE_ID = #{id}
+    </delete>
+
+    <select id="getSessionByTrid" resultMap="sessionMap">
+        select * from T_SESSION where SE_TR_ID = #{trid}
+    </select>
+    <select id="getSessionByEmpid" resultMap="sessionMap">
+        select * from T_SESSION where SE_EMP_ID = #{empid}
+    </select>
+
+    <resultMap id="sessionMap" type="Session">
+        <id property="id" column="SE_ID"/>
+        <result property="trid" column="SE_TR_ID"/>
+        <result property="empid" column="SE_EMP_ID"/>
+    </resultMap>
+
+</mapper>

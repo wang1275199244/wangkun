@@ -27,7 +27,7 @@
             <td><a href="toShowAddressList">部门职位员工</a></td>
             <td><a href="toShowMyTrain">培训</a></td>
             <td><a href="">奖惩</a></td>
-            <td><a href="">考勤打卡</a></td>
+            <td><a href="toClockIn">打卡</a></td>
             <td><a href="">薪资</a></td>
         </tr>
     </table>

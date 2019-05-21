@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.ClockInDao">
+
+    <insert id="addClockIn">
+        insert into T_CLOCK_IN (C_EMP_ID, C_DATE, C_TIME, C_STATE) values (#{empid},#{date},#{time},#{state})
+    </insert>
+
+    <resultMap id="clockInMap" type="ClockIn">
+        <id property="id" column="C_ID"/>
+        <result property="empid" column="C_EMP_ID"/>
+        <result property="date" column="C_DATE"/>
+        <result property="time" column="C_TIME"/>
+        <result property="state" column="C_STATE"/>
+    </resultMap>
+</mapper>

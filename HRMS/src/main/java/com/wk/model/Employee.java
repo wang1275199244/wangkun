@@ -4,38 +4,42 @@ import java.io.Serializable;
 
 public class Employee implements Serializable {
     private Integer id;
-    private String name;
+    private String account;//登录账号
     private String pass;
-    private String realName;
+    private String name;
     private String sex;
     private Integer age;
     private String phone;
     private String email;
     private Integer depid;
     private Integer pid;
+    private String degree;
+    private String graduateSchool;
+    private String major;
+    private String entryTime;//入职时间
     private Integer state;//0.试用期1.在职2.离职
 
     public Employee() {
     }
 
-    public Employee(String name, String pass) {
-        this.name = name;
+    public Employee(String account, String pass) {
+        this.account = account;
         this.pass = pass;
     }
 
-    public Employee(String name, String pass,String realName, String sex, Integer age, String phone, String email) {
-        this(name,pass);
-        this.realName = realName;
+    public Employee(String account, String pass, String name, String sex, Integer age, String phone, String email, Integer depid, Integer pid, String degree, String graduateSchool, String major, String entryTime, Integer state) {
+        this(account,pass);
+        this.name = name;
         this.sex = sex;
         this.age = age;
         this.phone = phone;
         this.email = email;
-    }
-
-    public Employee(String name, String pass,String realName, String sex, Integer age, String phone, String email, Integer depid, Integer pid,Integer state) {
-        this(name,pass,realName,sex,age,phone,email);
         this.depid = depid;
         this.pid = pid;
+        this.degree = degree;
+        this.graduateSchool = graduateSchool;
+        this.major = major;
+        this.entryTime = entryTime;
         this.state = state;
     }
 
@@ -47,12 +51,12 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAccount() {
+        return account;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getPass() {
@@ -63,12 +67,12 @@ public class Employee implements Serializable {
         this.pass = pass;
     }
 
-    public String getRealName() {
-        return realName;
+    public String getName() {
+        return name;
     }
 
-    public void setRealName(String realName) {
-        this.realName = realName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSex() {
@@ -119,6 +123,38 @@ public class Employee implements Serializable {
         this.pid = pid;
     }
 
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getGraduateSchool() {
+        return graduateSchool;
+    }
+
+    public void setGraduateSchool(String graduateSchool) {
+        this.graduateSchool = graduateSchool;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getEntryTime() {
+        return entryTime;
+    }
+
+    public void setEntryTime(String entryTime) {
+        this.entryTime = entryTime;
+    }
+
     public Integer getState() {
         return state;
     }
@@ -131,15 +167,19 @@ public class Employee implements Serializable {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
                 ", pass='" + pass + '\'' +
-                ", realName='" + realName + '\'' +
+                ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", depid=" + depid +
                 ", pid=" + pid +
+                ", degree='" + degree + '\'' +
+                ", graduateSchool='" + graduateSchool + '\'' +
+                ", major='" + major + '\'' +
+                ", entryTime='" + entryTime + '\'' +
                 ", state=" + state +
                 '}';
     }

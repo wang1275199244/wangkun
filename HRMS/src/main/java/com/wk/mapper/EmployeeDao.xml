@@ -2,22 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wk.dao.EmployeeDao">
     <insert id="addEmployee">
-        insert into T_EMPLOYEE (EMP_NAME, EMP_PASS,EMP_REAL_NAME, EMP_SEX, EMP_AGE, EMP_PHONE, EMP_EMAIL,EMP_DEP_ID,EMP_P_ID,EMP_STATE) VALUES (#{name},#{pass},#{realName},#{sex},#{age},#{phone},#{email},#{depid},#{pid},#{state})
+        insert into T_EMPLOYEE (EMP_ACCOUNT, EMP_PASS,EMP_NAME, EMP_SEX, EMP_AGE, EMP_PHONE, EMP_EMAIL, EMP_DEP_ID, EMP_P_ID, EMP_DEGREE, EMP_GRADUATE_SCHOOL, EMP_MAJOR, EMP_ENTRY_TIME,EMP_STATE) VALUES (#{account},#{pass},#{name},#{sex},#{age},#{phone},#{email},#{depid},#{pid},#{degree},#{graduateSchool},#{major},#{entryTime},#{state})
     </insert>
 
     <update id="updateEmployee">
         UPDATE T_EMPLOYEE
-        SET EMP_NAME = #{name},
+        SET EMP_ACCOUNT= #{account},
          EMP_PASS = #{pass},
-          EMP_REAL_NAME = #{realName}
+          EMP_NAME = #{name},
           EMP_SEX = #{sex},
            EMP_AGE = #{age},
             EMP_PHONE = #{phone},
              EMP_EMAIL = #{email},
               EMP_DEP_ID = #{depid},
                 EMP_P_ID = #{pid},
-                  EMP_STATE = #{state}
-             WHERE EMP_ID = #{id}
+                  EMP_DEGREE = #{degree},
+                   EMP_GRADUATE_SCHOOL = #{graduateSchool},
+                    EMP_MAJOR = #{major},
+                     EMP_ENTRY_TIME = #{entryTime},
+                      EMP_STATE = #{state}
+                        WHERE EMP_ID = #{id}
     </update>
 
     <delete id="delEmployee">
@@ -25,7 +29,7 @@
     </delete>
 
     <select id="getEmployee" resultMap="employeeMap">
-        select * from T_EMPLOYEE where EMP_NAME = #{0} and EMP_PASS = #{1}
+        select * from T_EMPLOYEE where EMP_ACCOUNT = #{0} and EMP_PASS = #{1}
     </select>
     <select id="getEmployeeByPid" parameterType="Integer" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_P_ID = #{pid}
@@ -39,15 +43,19 @@
 
     <resultMap id="employeeMap" type="Employee">
         <id property="id" column="EMP_ID"/>
-        <result property="name" column="EMP_NAME"/>
+        <result property="account" column="EMP_ACCOUNT"/>
         <result property="pass" column="EMP_PASS"/>
-        <result property="realName" column="EMP_REAL_NAME"/>
+        <result property="name" column="EMP_NAME"/>
         <result property="sex" column="EMP_SEX"/>
         <result property="age" column="EMP_AGE"/>
         <result property="phone" column="EMP_PHONE"/>
         <result property="email" column="EMP_EMAIL"/>
         <result property="depid" column="EMP_DEP_ID"/>
         <result property="pid" column="EMP_P_ID"/>
+        <result property="degree" column="EMP_DEGREE"/>
+        <result property="graduateSchool" column="EMP_GRADUATE_SCHOOL"/>
+        <result property="major" column="EMP_MAJOR"/>
+        <result property="entryTime" column="EMP_ENTRY_TIME"/>
         <result property="state" column="EMP_STATE"/>
     </resultMap>
 </mapper>

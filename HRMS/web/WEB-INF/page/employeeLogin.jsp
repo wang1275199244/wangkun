@@ -93,7 +93,7 @@
         <h3>员工登录</h3>
         <form action="employeeLogin" method="post">
             <div id="in1">
-                <input type="text" class="be" name="name" placeholder="请输入用户名" required/>
+                <input type="text" class="be" name="account" placeholder="请输入登录张账号" required/>
             </div>
             <div id="in2">
                 <input type="password" class="be" name="pass" placeholder="请输入密码" required/>
