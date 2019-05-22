@@ -26,7 +26,7 @@
                 var department = $(this).val();
                 $("#depart").val(department);
 
-                $.get("getEmployees1",{"depid":$(this).val()},function (obj) {
+                $.get("getEmploy",{"depid":$(this).val()},function (obj) {
                     $("#employee").empty();
                     for (var i in obj) {
                         $("#employee").append("<option value='" + obj[i].id + "'>" + obj[i].name +"</option>")

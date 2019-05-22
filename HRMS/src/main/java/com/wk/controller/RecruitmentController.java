@@ -38,9 +38,17 @@ public class RecruitmentController {
     @Resource
     private EmployeeService employeeService;
 
+    @RequestMapping("/")
+    public String first()throws Exception{
+        return "forward:showRecruitmentInformation";
+    }
 
+    @RequestMapping("toFirst")
+    public String toFirst()throws Exception{
+        return "forward:showRecruitmentInformation";
+    }
 
-    @RequestMapping("beforeindex")
+    @RequestMapping("showRecruitmentInformation")
     public String showRecruitmentInformation(@RequestParam(name = "currentPage", required = false) Integer currentPage, HttpServletResponse response, HttpSession session) throws Exception {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
 

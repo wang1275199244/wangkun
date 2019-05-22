@@ -29,7 +29,7 @@
     </delete>
 
     <select id="getEmployee" resultMap="employeeMap">
-        select * from T_EMPLOYEE where EMP_ACCOUNT = #{0} and EMP_PASS = #{1}
+        select * from T_EMPLOYEE where EMP_ACCOUNT = #{account} and EMP_PASS = #{pass}
     </select>
     <select id="getEmployeeByPid" parameterType="Integer" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_P_ID = #{pid}

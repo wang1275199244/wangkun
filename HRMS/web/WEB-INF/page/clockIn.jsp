@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2019/5/21 0021
@@ -17,25 +17,12 @@
     <base href="<%=basePath%>"/>
     <title>打卡页面</title>
     <script src="js/jquery-3.1.0.js"></script>
-    <script>
-        $(function () {
-            var initializationTime=(new Date()).getTime();
-            function showLeftTime() {
-                var now = new Date();
-                var year = now.getYear();
-                var month = now.getMonth();
-                var day = now.getDate();
-                var hours = now.getHours();
-                var minutes = now.getMinutes();
-                var seconds = now.getSeconds();
-                document.all.show.innerHTML = "" + year + "年" + month + "月" + day + "日 " + hours + ":" + minutes + ":" + seconds + "";
-                var timeID = setTimeout(showLeftTime, 1000);
-            }
-        })
-    </script>
+
 </head>
-<body onload="showLeftTime()">
-<label id="show"></label>
+<body>
+
+
+<span id="time"></span>
     <div>
         <div>
             <a href="toEmployeeInformation">返回</a>
@@ -48,4 +35,15 @@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    $(function () {
+        $("time").html(new Date().toLocaleString());
+        window.setInterval("getTime();",1000);
+
+        window.onload = getTime();
+    })
+
+
+</script>
+
 </html>

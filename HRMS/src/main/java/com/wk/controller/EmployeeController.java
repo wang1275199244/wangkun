@@ -28,7 +28,6 @@ public class EmployeeController {
     @Resource
     private TrainService trainService;
 
-
     @RequestMapping("toEmployeeLogin")
     public String toEmployeeLogin()throws Exception{
         return "employeeLogin";
@@ -72,9 +71,9 @@ public class EmployeeController {
     }
 
     //获得员工
-    @RequestMapping("getEmployees1")
+    @RequestMapping("getEmploy")
     @ResponseBody
-    protected List<Employee> getEmployees1(Integer pid1, HttpServletResponse response) throws Exception {
+    protected List<Employee> getEmploy(Integer pid1, HttpServletResponse response) throws Exception {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
 
         if(pid1 != null&&pid1 != 0){

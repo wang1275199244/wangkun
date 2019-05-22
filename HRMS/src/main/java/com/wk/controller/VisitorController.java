@@ -27,8 +27,9 @@ public class VisitorController {
     }
 
     @RequestMapping("toLogOut")
-    public String toLogOut(HttpSession session, HttpServletResponse response)throws Exception{
-        return logOut(session,response);
+    public String toLogOut(HttpSession session)throws Exception{
+        session.invalidate();
+        return "forward:toFirst";
     }
 
     @RequestMapping("visitorLogin")
@@ -64,9 +65,5 @@ public class VisitorController {
         }
     }
 
-    @RequestMapping("logOut")
-    protected String logOut(HttpSession session, HttpServletResponse response) throws Exception {
-        session.invalidate();
-        return "forward:index";
-    }
+
 }
