@@ -38,6 +38,7 @@ public class RecruitmentController {
     @Resource
     private EmployeeService employeeService;
 
+
     @RequestMapping("/")
     public String first()throws Exception{
         return "forward:showRecruitmentInformation";

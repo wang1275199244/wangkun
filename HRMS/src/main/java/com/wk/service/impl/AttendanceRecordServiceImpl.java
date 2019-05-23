@@ -53,4 +53,11 @@ public class AttendanceRecordServiceImpl implements AttendanceRecordService {
         }
         return arDao.getAttendanceRecordByEmpid(empid);
     }
+
+    public AttendanceRecord getAttendanceRecord(AttendanceRecord attendanceRecord) {
+        if(attendanceRecord == null){
+            return null;
+        }
+        return arDao.getAttendanceRecord(attendanceRecord);
+    }
 }

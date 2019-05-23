@@ -9,4 +9,5 @@ public interface RewardPunishmentService {
     boolean delRewardPunishment(RewardPunishment rewardPunishment);
     boolean updateRewardPunishment(RewardPunishment rewardPunishment);
     List<RewardPunishment> getRewardPunishmentByEmpid(Integer empid);
+    List<RewardPunishment> getRewardPunishmentByEmpidAndDate(Integer empid,String date);
 }

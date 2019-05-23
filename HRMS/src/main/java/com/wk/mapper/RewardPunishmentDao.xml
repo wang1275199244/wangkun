@@ -23,6 +23,10 @@
         select * from T_REWARD_PUNISHMENT where RP_EMP_ID = #{empid}
     </select>
 
+    <select id="getRewardPunishmentByEmpidAndDate" resultMap="rpMap">
+        select * from T_REWARD_PUNISHMENT where RP_EMP_ID = #{0} and RP_DATE like '${value}%'
+    </select>
+
     <resultMap id="rpMap" type="RewardPunishment">
         <id property="id" column="RP_ID"/>
         <result property="empid" column="RP_EMP_ID"/>

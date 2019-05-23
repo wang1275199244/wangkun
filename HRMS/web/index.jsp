@@ -113,7 +113,7 @@
         width: 100px;
         background: #F4F4F4;
         position: absolute;
-        left:0px;
+        left:10px;
         top:28px;
         text-align: center;
         z-index: 2;
@@ -189,8 +189,8 @@
     <div class="ab" id="login">登录
         <div id="log" style="display: none">
             <a href="toAdminLogin">管理员</a><br/>
-            <a href="toVisitorLogin">游客</a><br/>
-            <a href="toEmployeeLogin">员工</a>
+            <a href="toVisitorLogin">游&emsp;客</a><br/>
+            <a href="toEmployeeLogin">员&emsp;工</a>
         </div>
     </div>
     <div class="ab" id="rig"><a href="toRegister">注册</a></div>

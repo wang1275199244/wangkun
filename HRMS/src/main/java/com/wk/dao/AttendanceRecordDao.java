@@ -1,6 +1,7 @@
 package com.wk.dao;
 
 import com.wk.model.AttendanceRecord;
+import com.wk.model.ClockIn;
 
 import java.util.List;
 
@@ -9,5 +10,7 @@ public interface AttendanceRecordDao {
     int delAttendanceRecord(AttendanceRecord attendanceRecord);
     int updateAttendanceRecord(AttendanceRecord attendanceRecord);
     List<AttendanceRecord> getAttendanceRecordByEmpid(Integer empid);
+    List<AttendanceRecord> getAttendanceRecordByEmpidAndDate(AttendanceRecord attendanceRecord);
+    AttendanceRecord getAttendanceRecord(AttendanceRecord attendanceRecord);
 
 }

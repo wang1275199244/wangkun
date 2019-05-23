@@ -4,26 +4,32 @@ import java.io.Serializable;
 
 public class AttendanceRecord implements Serializable {
     private Integer id;
+    private Integer empid;
+    private String date;//日期
     private String clockIn;//上班打卡时间
     private String clockOut;//下班打卡时间
-    private String overTimeStart;//加班开始时间
-    private String overTimeEnd;//加班结束时间
-    private Integer empid;
     private Integer state;//考勤状态0.正常1.迟到2.早退3.旷工
 
     public AttendanceRecord() {
     }
 
-    public AttendanceRecord(String clockIn) {
-        this.clockIn = clockIn;
+    public AttendanceRecord(Integer empid, String date) {
+        this.empid = empid;
+        this.date = date;
     }
 
-    public AttendanceRecord(String clockIn, String clockOut, Integer empid, Integer state) {
+    public AttendanceRecord(Integer empid, String date, String clockIn, Integer state) {
+        this(empid,date);
         this.clockIn = clockIn;
-        this.clockOut = clockOut;
-        this.empid = empid;
         this.state = state;
     }
+
+    public AttendanceRecord(Integer empid, String date, String clockIn, String clockOut, Integer state) {
+        this(empid,date,clockIn,state);
+        this.clockOut = clockOut;
+    }
+
+
 
     public Integer getId() {
         return id;
@@ -31,6 +37,22 @@ public class AttendanceRecord implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(Integer empid) {
+        this.empid = empid;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getClockIn() {
@@ -49,30 +71,6 @@ public class AttendanceRecord implements Serializable {
         this.clockOut = clockOut;
     }
 
-    public String getOverTimeStart() {
-        return overTimeStart;
-    }
-
-    public void setOverTimeStart(String overTimeStart) {
-        this.overTimeStart = overTimeStart;
-    }
-
-    public String getOverTimeEnd() {
-        return overTimeEnd;
-    }
-
-    public void setOverTimeEnd(String overTimeEnd) {
-        this.overTimeEnd = overTimeEnd;
-    }
-
-    public Integer getEmpid() {
-        return empid;
-    }
-
-    public void setEmpid(Integer empid) {
-        this.empid = empid;
-    }
-
     public Integer getState() {
         return state;
     }
@@ -85,11 +83,10 @@ public class AttendanceRecord implements Serializable {
     public String toString() {
         return "AttendanceRecord{" +
                 "id=" + id +
+                ", empid=" + empid +
+                ", date='" + date + '\'' +
                 ", clockIn='" + clockIn + '\'' +
                 ", clockOut='" + clockOut + '\'' +
-                ", overTimeStart='" + overTimeStart + '\'' +
-                ", overTimeEnd='" + overTimeEnd + '\'' +
-                ", empid=" + empid +
                 ", state=" + state +
                 '}';
     }

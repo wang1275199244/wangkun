@@ -9,4 +9,5 @@ public interface RewardPunishmentDao {
     int delRewardPunishment(RewardPunishment rewardPunishment);
     int updateRewardPunishment(RewardPunishment rewardPunishment);
     List<RewardPunishment> getRewardPunishmentByEmpid(Integer empid);
+    List<RewardPunishment> getRewardPunishmentByEmpidAndDate(Integer empid,String date);
 }

@@ -10,5 +10,6 @@ public interface AttendanceRecordService {
     boolean delAttendanceRecord(AttendanceRecord attendanceRecord);
     boolean updateAttendanceRecord(AttendanceRecord attendanceRecord);
     List<AttendanceRecord> getAttendanceRecordByEmpid(Integer empid);
+    AttendanceRecord getAttendanceRecord(AttendanceRecord attendanceRecord);
 
 }

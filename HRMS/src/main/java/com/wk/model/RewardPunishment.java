@@ -12,6 +12,17 @@ public class RewardPunishment implements Serializable {
     public RewardPunishment() {
     }
 
+    public RewardPunishment(Integer empid, String bonusDate) {
+        this.empid = empid;
+        this.bonusDate = bonusDate;
+    }
+
+    public RewardPunishment(Integer empid, String cause, Double bonus, String bonusDate) {
+        this(empid,bonusDate);
+        this.cause = cause;
+        this.bonus = bonus;
+    }
+
     public Integer getId() {
         return id;
     }

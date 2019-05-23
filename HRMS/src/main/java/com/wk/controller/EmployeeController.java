@@ -27,6 +27,8 @@ public class EmployeeController {
     private SessionService sessionService;
     @Resource
     private TrainService trainService;
+    @Resource
+    private RewardPunishmentService rpService;
 
     @RequestMapping("toEmployeeLogin")
     public String toEmployeeLogin()throws Exception{
@@ -135,5 +137,28 @@ public class EmployeeController {
             }
         }
         return "forward:toShowMyTrain";
+    }
+
+    //查看奖惩
+    @RequestMapping("toShowRewardPunishment")
+    protected String toShowRewardPunishment(@RequestParam(name = "currentPage", required = false) Integer currentPage, HttpServletResponse response, HttpSession session)throws Exception{
+        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+        Employee employee = (Employee) session.getAttribute("employee");
+        if(employee != null){
+            List<RewardPunishment> punishment = rpService.getRewardPunishmentByEmpid(employee.getId());
+        }
+        return "showPunishment";
+    }
+
+    //获得奖惩记录
+    @RequestMapping("getPunishment")
+    @ResponseBody
+    protected List<RewardPunishment> getPunishment(String date, HttpServletResponse response, HttpSession session)throws Exception{
+        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+        Employee employee = (Employee) session.getAttribute("employee");
+        if(employee != null&&date != null){
+            return rpService.getRewardPunishmentByEmpidAndDate(employee.getId(),date);
+        }
+        return null;
     }
 }

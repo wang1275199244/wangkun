@@ -26,7 +26,7 @@
             <th>招聘</th>
             <th>培训</th>
             <th>部门管理</th>
-            <th><a href="">考勤</a></th>
+            <th><a href="toShowAttendance">考勤</a></th>
             <th><a href="">薪资</a></th>
         </tr>
         <tr>

@@ -19,14 +19,14 @@
 
 <div>
     <div>
-        <a href="beforeindex">返回</a>
+        <a href="/toFirst">返回</a>
     </div>
     <table>
         <tr>
             <td><a href="">个人信息</a></td>
             <td><a href="toShowAddressList">部门职位员工</a></td>
             <td><a href="toShowMyTrain">培训</a></td>
-            <td><a href="">奖惩</a></td>
+            <td><a href="toShowRewardPunishment">奖惩</a></td>
             <td><a href="toClockIn">打卡</a></td>
             <td><a href="">薪资</a></td>
         </tr>

@@ -3,18 +3,17 @@
 <mapper namespace="com.wk.dao.AttendanceRecordDao">
 
     <insert id="addAttendanceRecord">
-        insert into T_ATTENDANCE_RECORD (AR_CLOCK_IN, AR_CLOCK_OUT, AR_OVERTIME_START, AR_OVERTIME_END, AR_EMP_ID, AR_STATE) VALUES (#{clockIn},#{clockOut},#{overTimeStart},#{overTimeEnd},#{empid}#{state})
+        insert into T_ATTENDANCE_RECORD (AR_EMP_ID,AR_DATE,AR_CLOCK_IN, AR_CLOCK_OUT, AR_STATE) VALUES (#{empid,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{clockIn,jdbcType=VARCHAR},#{clockOut,jdbcType=VARCHAR},#{state,jdbcType=INTEGER})
     </insert>
 
     <update id="updateAttendanceRecord">
         UPDATE T_ATTENDANCE_RECORD
-        SET AR_CLOCK_IN = #{clockIn},
-         AR_CLOCK_OUT = #{clockOut},
-          AR_OVERTIME_START = #{overTimeStart},
-           AR_OVERTIME_END = #{overTimeEnd},
-            AR_EMP_ID = #{empid},
-             AR_STATE = #{state}
-             where Ar_ID = #{id}
+        SET AR_EMP_ID = #{empid},
+        AR_DATE = #{date},
+          AR_CLOCK_IN = #{clockIn},
+            AR_CLOCK_OUT = #{clockOut},
+              AR_STATE = #{state}
+                where AR_ID = #{id}
     </update>
 
     <delete id="delAttendanceRecord">
@@ -24,13 +23,21 @@
     <select id="getAttendanceRecordByEmpid" resultMap="arMap">
         select * from T_ATTENDANCE_RECORD where AR_OVERTIME_END = #{empid}
     </select>
+
+    <select id="getAttendanceRecord" resultMap="arMap">
+        select * from T_ATTENDANCE_RECORD where AR_EMP_ID = #{empid} and AR_DATE = #{date}
+    </select>
+
+    <select id="getAttendanceRecordByEmpidAndDate" resultMap="arMap">
+        select * from T_ATTENDANCE_RECORD where AR_EMP_ID = #{empid} and AR_DATE like '${value}%'
+    </select>
+
     <resultMap id="arMap" type="AttendanceRecord">
         <id property="id" column="AR_ID"/>
+        <result property="empid" column="AR_EMP_ID"/>
+        <result property="date" column="AR_DATE"/>
         <result property="clockIn" column="AR_CLOCK_IN"/>
         <result property="clockOut" column="AR_CLOCK_OUT"/>
-        <result property="overTimeStart" column="AR_OVERTIME_START"/>
-        <result property="overTimeEnd" column="AR_OVERTIME_END"/>
-        <result property="empid" column="AR_EMP_ID"/>
         <result property="state" column="AR_STATE"/>
     </resultMap>
 </mapper>

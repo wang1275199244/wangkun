@@ -30,8 +30,6 @@ public class AdminController {
     private PositionService positionService;
     @Resource
     private EmployeeService employeeService;
-    @Resource
-    private TrainService trainService;
 
     //管理员登录部分
     @RequestMapping("toAdminLogin")
@@ -329,6 +327,7 @@ public class AdminController {
 
     //修改职位
     @RequestMapping("toUpdatePosition")
+    @ResponseBody
     protected String toUpdatePosition(Integer posid,String pname1) throws Exception {
         if(posid != null&&posid != 0){
             Position position = positionService.getPositionById(posid);
@@ -342,6 +341,7 @@ public class AdminController {
 
     //删除职位
     @RequestMapping("toDelPosition")
+    @ResponseBody
     protected String toDelPosition(Integer posid1) throws Exception {
         if(posid1 != null&&posid1 != 0){
             Position position = positionService.getPositionById(posid1);
@@ -361,6 +361,13 @@ public class AdminController {
         return "forward:toShowDepartment";
     }
 
+    @RequestMapping("toShowAttendance")
+    protected String toShowAttendance(HttpServletResponse response,HttpSession session) throws Exception{
+        response.setHeader("Content-Type", "text/html;charset=UTF-8");
 
+        List<Department> departments = departmentService.getAllDepartments();
+        session.setAttribute("dts2",departments);
+        return "showAttendance";
+    }
 
 }
