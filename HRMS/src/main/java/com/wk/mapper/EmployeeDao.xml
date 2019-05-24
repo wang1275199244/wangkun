@@ -31,12 +31,15 @@
     <select id="getEmployee" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_ACCOUNT = #{account} and EMP_PASS = #{pass}
     </select>
+
     <select id="getEmployeeByPid" parameterType="Integer" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_P_ID = #{pid}
     </select>
+
     <select id="getEmployeeByDepid" parameterType="Integer" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_DEP_ID = #{depid}
     </select>
+
     <select id="getEmployeeById" resultMap="employeeMap">
         select * from T_EMPLOYEE where EMP_ID = #{id}
     </select>

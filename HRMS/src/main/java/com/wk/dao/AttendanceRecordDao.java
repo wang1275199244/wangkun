@@ -9,8 +9,8 @@ public interface AttendanceRecordDao {
     int addAttendanceRecord(AttendanceRecord attendanceRecord);
     int delAttendanceRecord(AttendanceRecord attendanceRecord);
     int updateAttendanceRecord(AttendanceRecord attendanceRecord);
+    AttendanceRecord getAttendanceRecordByEmpidAndDate(AttendanceRecord attendanceRecord);
     List<AttendanceRecord> getAttendanceRecordByEmpid(Integer empid);
-    List<AttendanceRecord> getAttendanceRecordByEmpidAndDate(AttendanceRecord attendanceRecord);
-    AttendanceRecord getAttendanceRecord(AttendanceRecord attendanceRecord);
+    List<AttendanceRecord> getAttendanceRecordByDate(String date);
 
 }

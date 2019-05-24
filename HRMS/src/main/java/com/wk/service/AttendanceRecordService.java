@@ -9,7 +9,7 @@ public interface AttendanceRecordService {
     boolean addAttendanceRecord(AttendanceRecord attendanceRecord);
     boolean delAttendanceRecord(AttendanceRecord attendanceRecord);
     boolean updateAttendanceRecord(AttendanceRecord attendanceRecord);
+    AttendanceRecord getAttendanceRecordByEmpidAndDate(AttendanceRecord attendanceRecord);
     List<AttendanceRecord> getAttendanceRecordByEmpid(Integer empid);
-    AttendanceRecord getAttendanceRecord(AttendanceRecord attendanceRecord);
-
+    List<AttendanceRecord> getAttendanceRecordByDate(String date);
 }

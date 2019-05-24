@@ -3,7 +3,7 @@
 <mapper namespace="com.wk.dao.AttendanceRecordDao">
 
     <insert id="addAttendanceRecord">
-        insert into T_ATTENDANCE_RECORD (AR_EMP_ID,AR_DATE,AR_CLOCK_IN, AR_CLOCK_OUT, AR_STATE) VALUES (#{empid,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{clockIn,jdbcType=VARCHAR},#{clockOut,jdbcType=VARCHAR},#{state,jdbcType=INTEGER})
+        insert into T_ATTENDANCE_RECORD (AR_EMP_ID,AR_DATE,AR_CLOCK_IN, AR_CLOCK_OUT,AR_ATTENDANCE_TIME,AR_OVER_TIME, AR_STATE) VALUES (#{empid,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{clockIn,jdbcType=VARCHAR},#{clockOut,jdbcType=VARCHAR},#{attendanceTime,jdbcType=VARCHAR},#{overtime,jdbcType=VARCHAR},#{state,jdbcType=INTEGER})
     </insert>
 
     <update id="updateAttendanceRecord">
@@ -12,8 +12,10 @@
         AR_DATE = #{date},
           AR_CLOCK_IN = #{clockIn},
             AR_CLOCK_OUT = #{clockOut},
-              AR_STATE = #{state}
-                where AR_ID = #{id}
+              AR_ATTENDANCE_TIME = #{attendanceTime},
+               AR_OVER_TIME = #{overtime},
+                AR_STATE = #{state}
+                 where AR_ID = #{id}
     </update>
 
     <delete id="delAttendanceRecord">
@@ -24,12 +26,12 @@
         select * from T_ATTENDANCE_RECORD where AR_OVERTIME_END = #{empid}
     </select>
 
-    <select id="getAttendanceRecord" resultMap="arMap">
+    <select id="getAttendanceRecordByEmpidAndDate" resultMap="arMap">
         select * from T_ATTENDANCE_RECORD where AR_EMP_ID = #{empid} and AR_DATE = #{date}
     </select>
 
-    <select id="getAttendanceRecordByEmpidAndDate" resultMap="arMap">
-        select * from T_ATTENDANCE_RECORD where AR_EMP_ID = #{empid} and AR_DATE like '${value}%'
+    <select id="getAttendanceRecordByDate" resultMap="arMap">
+        select * from T_ATTENDANCE_RECORD where AR_DATE = #{date}
     </select>
 
     <resultMap id="arMap" type="AttendanceRecord">
@@ -38,6 +40,8 @@
         <result property="date" column="AR_DATE"/>
         <result property="clockIn" column="AR_CLOCK_IN"/>
         <result property="clockOut" column="AR_CLOCK_OUT"/>
+        <result property="attendanceTime" column="AR_ATTENDANCE_TIME"/>
+        <result property="overtime" column="AR_OVER_TIME"/>
         <result property="state" column="AR_STATE"/>
     </resultMap>
 </mapper>

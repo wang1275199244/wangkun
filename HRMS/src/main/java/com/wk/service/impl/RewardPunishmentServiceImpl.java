@@ -53,10 +53,10 @@ public class RewardPunishmentServiceImpl implements RewardPunishmentService {
         return rpDao.getRewardPunishmentByEmpid(empid);
     }
 
-    public List<RewardPunishment> getRewardPunishmentByEmpidAndDate(Integer empid, String date) {
-        if(empid == null||empid == 0||date == null){
+    public List<RewardPunishment> getRewardPunishmentByEmpidAndDate(RewardPunishment rewardPunishment) {
+        if(rewardPunishment == null){
             return null;
         }
-        return rpDao.getRewardPunishmentByEmpidAndDate(empid, date);
+        return rpDao.getRewardPunishment(rewardPunishment);
     }
 }

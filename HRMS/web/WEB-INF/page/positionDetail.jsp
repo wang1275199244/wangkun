@@ -21,7 +21,7 @@
 <body>
 <div>
     <div>
-        <a href="beforeindex">返回</a>
+        <a href="toFirst">返回</a>
     </div>
     <%
         RecruitmentInformation recruitmentInformation = (RecruitmentInformation) session.getAttribute("rtf");
@@ -56,7 +56,9 @@
         <p><h4>公司信息:</h4><div>${rtf1.companyInformation}</div></p>
         <hr/>
         <input type="hidden" name="id" value="${rtf1.id}">
+<c:if test="${sessionScope.visitor != null}">
         <input type="submit" value="选择简历">
+</c:if>
     </form>
 
 </div>

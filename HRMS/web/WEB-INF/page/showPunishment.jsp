@@ -43,8 +43,8 @@
         </div>
 
         <form action="" method="post">
-            <input type="month" name="date" value="2010-09" id="dat">
-            <input type="button" value="查询" id="but">
+            <input type="month" name="date" value="2019-05" id="dat">
+            <input type="button" value="查看奖惩记录" id="but">
         </form>
         <table>
             <tr>

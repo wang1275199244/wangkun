@@ -21,31 +21,23 @@
     <script>
 
         $(function () {
-            //获得职位
-            $("#dep").change(function () {
-                var department = $(this).val();
-                $.get("getPositions",{"depid":$(this).val()},function (obj) {
-                    $("#pos").empty();
-                    for (var i in obj) {
-                        $("#pos").append("<option value='" + obj[i].id + "'>" + obj[i].name +"</option>")
 
+            $("#but").click(function () {
+                $.post("getAttendance",{"date":$("#date").val()},function (obj) {
+                    $("#at").empty();
+                    for (var i in obj) {
+                        $("#at").append("<td>" + obj[i].employee.name +"</td>"
+                            +"<td>" + obj[i].attendanceRecord.date +"</td>"
+                            +"<td>" + obj[i].attendanceRecord.clockIn +"</td>"
+                            +"<td>" + obj[i].attendanceRecord.clockOut +"</td>"
+                            +"<td>" + obj[i].attendanceRecord.attendanceTime +"</td>"
+                            +"<td>" + obj[i].attendanceRecord.overtime +"</td>"
+                            +"<td>" + obj[i].attendanceRecord.state +"</td>"
+                        )
                     }
                 })
+
             })
-
-            //获得员工
-            $("#pos").change(function () {
-                var position = $(this).val();
-
-                $.get("getEmployees",{"pid":$(this).val()},function (obj) {
-                    $("#emp").empty();
-                    for (var i in obj) {
-                        $("#emp").append("<option value='" + obj[i].id + "'>" + obj[i].name +"</option>")
-
-                    }
-                })
-            })
-
 
 
         })
@@ -58,39 +50,25 @@
         </div>
 
         <div>
-            <%
-                List<Department> list = (List<Department>) session.getAttribute("dts1");
-                pageContext.setAttribute("list",list);
-            %>
-
-
-                <p>
-                    <label>部门:</label>
-                    <select name="department" id="dep">
-                        <c:if test="${list != null && fn:length(list) != 0}">
-                            <c:forEach items="${list}" var="department" varStatus="i">
-                                <option value="${department.id}">${department.name}</option>
-                            </c:forEach>
-                        </c:if>
-
-                        <c:if test="${list == null || fn:length(list) == 0}">
-                            <option></option>
-                        </c:if>
-                    </select>
-                </p>
-
-            <p>
-                <label>职位:</label>
-                <select name="position" id="pos">
-
-                </select>
-            </p>
-            <p>
-                <label>员工:</label>
-                <select name="employee" id="emp">
-
-                </select>
-            </p>
+           <form>
+               <input type="date" value="2019-05-23" id="date">
+               <input type="button" value="查看考勤记录" id="but">
+           </form>
+            <table>
+                <tr>
+                    <th>员工姓名</th>
+                    <th>日期</th>
+                    <th>上班打卡时间</th>
+                    <th>下班打卡时间</th>
+                    <th>正常出勤时间</th>
+                    <th>加班时间</th>
+                    <th>上班情况</th>
+                </tr>
+                <tr id="at"></tr>
+                <tr>
+                    <td colspan="5">备注:-1.缺勤,0.正常,1.迟到,2.旷工,3.早退</td>
+                </tr>
+            </table>
 
         </div>
     </div>

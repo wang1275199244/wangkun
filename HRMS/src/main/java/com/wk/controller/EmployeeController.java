@@ -141,12 +141,8 @@ public class EmployeeController {
 
     //查看奖惩
     @RequestMapping("toShowRewardPunishment")
-    protected String toShowRewardPunishment(@RequestParam(name = "currentPage", required = false) Integer currentPage, HttpServletResponse response, HttpSession session)throws Exception{
+    protected String toShowRewardPunishment( HttpServletResponse response)throws Exception{
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
-        Employee employee = (Employee) session.getAttribute("employee");
-        if(employee != null){
-            List<RewardPunishment> punishment = rpService.getRewardPunishmentByEmpid(employee.getId());
-        }
         return "showPunishment";
     }
 
@@ -157,7 +153,8 @@ public class EmployeeController {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
         Employee employee = (Employee) session.getAttribute("employee");
         if(employee != null&&date != null){
-            return rpService.getRewardPunishmentByEmpidAndDate(employee.getId(),date);
+            RewardPunishment punishment = new RewardPunishment(employee.getId(),date);
+            return rpService.getRewardPunishmentByEmpidAndDate(punishment);
         }
         return null;
     }

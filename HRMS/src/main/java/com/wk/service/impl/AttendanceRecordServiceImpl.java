@@ -3,7 +3,6 @@ package com.wk.service.impl;
 import com.wk.dao.AttendanceRecordDao;
 import com.wk.model.AttendanceRecord;
 import com.wk.service.AttendanceRecordService;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -47,6 +46,13 @@ public class AttendanceRecordServiceImpl implements AttendanceRecordService {
         return false;
     }
 
+    public AttendanceRecord getAttendanceRecordByEmpidAndDate(AttendanceRecord attendanceRecord) {
+        if(attendanceRecord == null){
+            return null;
+        }
+        return arDao.getAttendanceRecordByEmpidAndDate(attendanceRecord);
+    }
+
     public List<AttendanceRecord> getAttendanceRecordByEmpid(Integer empid) {
         if(empid == null||empid == 0){
             return null;
@@ -54,10 +60,10 @@ public class AttendanceRecordServiceImpl implements AttendanceRecordService {
         return arDao.getAttendanceRecordByEmpid(empid);
     }
 
-    public AttendanceRecord getAttendanceRecord(AttendanceRecord attendanceRecord) {
-        if(attendanceRecord == null){
+    public List<AttendanceRecord> getAttendanceRecordByDate(String date) {
+        if(date == null){
             return null;
         }
-        return arDao.getAttendanceRecord(attendanceRecord);
+        return arDao.getAttendanceRecordByDate(date);
     }
 }

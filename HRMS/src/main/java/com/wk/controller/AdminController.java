@@ -23,13 +23,16 @@ public class AdminController {
     @Resource
     private AdminService adminService;
     @Resource
-    private RecruitmentInformationService recruitmentInformationService;
+    private RecruitmentInformationService rifService;
     @Resource
     private DepartmentService departmentService;
     @Resource
     private PositionService positionService;
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private AttendanceRecordService arService;
+
 
     //管理员登录部分
     @RequestMapping("toAdminLogin")
@@ -61,7 +64,7 @@ public class AdminController {
             cp = 1;
         }
 
-        List<RecruitmentInformation> ris = recruitmentInformationService.getAllRecruitmentInformations();
+        List<RecruitmentInformation> ris = rifService.getAllRecruitmentInformations();
         if (ris != null && ris.size() != 0) {
             int totalRows = ris.size();
             int totalPage = GetTotalPage.getTp(totalRows);
@@ -83,7 +86,7 @@ public class AdminController {
     protected String toGetPositionDetail(@RequestParam(name = "id", required = false) Integer id, HttpServletResponse response, HttpSession session) throws Exception {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
 
-        RecruitmentInformation recruitmentInformation = recruitmentInformationService.getRecruitmentInformationsById(id);
+        RecruitmentInformation recruitmentInformation = rifService.getRecruitmentInformationsById(id);
         session.setAttribute("rtf", recruitmentInformation);
         return "getPositionDetail";
     }
@@ -114,7 +117,7 @@ public class AdminController {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
         if(recruitmentInformation != null){
             recruitmentInformation.setState(0);
-            boolean isOK = recruitmentInformationService.addRecruitmentInformation(recruitmentInformation);
+            boolean isOK = rifService.addRecruitmentInformation(recruitmentInformation);
             if(isOK){
                 return "forward:toShowAllRI";
             }
@@ -127,13 +130,13 @@ public class AdminController {
     @RequestMapping("toPublishformation")
     protected String toPublishformation(@RequestParam(name = "id", required = false) Integer id) throws Exception {
 
-        RecruitmentInformation recruitmentInformation = recruitmentInformationService.getRecruitmentInformationsById(id);
+        RecruitmentInformation recruitmentInformation = rifService.getRecruitmentInformationsById(id);
         if(recruitmentInformation != null){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String releaseDate = sdf.format(new Date());
             recruitmentInformation.setState(1);
             recruitmentInformation.setReleaseDate(releaseDate);
-            recruitmentInformationService.updateRecruitmentInformation(recruitmentInformation);
+            rifService.updateRecruitmentInformation(recruitmentInformation);
         }
         return "forward:toShowAllRI";
     }
@@ -142,10 +145,10 @@ public class AdminController {
     @RequestMapping("toUnpublishInformation")
     protected String toUnpublishInformation(@RequestParam(name = "id", required = false) Integer id) throws Exception {
 
-        RecruitmentInformation recruitmentInformation = recruitmentInformationService.getRecruitmentInformationsById(id);
+        RecruitmentInformation recruitmentInformation = rifService.getRecruitmentInformationsById(id);
         if(recruitmentInformation != null){
             recruitmentInformation.setState(0);
-            recruitmentInformationService.updateRecruitmentInformation(recruitmentInformation);
+            rifService.updateRecruitmentInformation(recruitmentInformation);
         }
         return "forward:toShowAllRI";
     }
@@ -153,9 +156,9 @@ public class AdminController {
     @RequestMapping("toDelInformation")
     protected String toDelInformation(@RequestParam(name = "id", required = false) Integer id) throws Exception {
 
-        RecruitmentInformation recruitmentInformation = recruitmentInformationService.getRecruitmentInformationsById(id);
+        RecruitmentInformation recruitmentInformation = rifService.getRecruitmentInformationsById(id);
         if(recruitmentInformation != null){
-            recruitmentInformationService.delRecruitmentInformation(recruitmentInformation);
+            rifService.delRecruitmentInformation(recruitmentInformation);
         }
         return "forward:toShowAllRI";
     }
@@ -362,12 +365,35 @@ public class AdminController {
     }
 
     @RequestMapping("toShowAttendance")
-    protected String toShowAttendance(HttpServletResponse response,HttpSession session) throws Exception{
+    protected String toShowAttendance(HttpServletResponse response) throws Exception{
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
-
-        List<Department> departments = departmentService.getAllDepartments();
-        session.setAttribute("dts2",departments);
         return "showAttendance";
+    }
+
+    //获取当日考勤
+    @RequestMapping("getAttendance")
+    @ResponseBody
+    protected List<AttendanceFand> getAttendance(String date,HttpServletResponse response) throws Exception{
+        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+        if(date != null){
+            List<AttendanceRecord> ars = arService.getAttendanceRecordByDate(date);
+            List<AttendanceFand> list = new ArrayList<AttendanceFand>();
+
+            if(ars != null&&ars.size() != 0){
+                for (int i = 0; i < ars.size(); i++) {
+                    Employee employee = employeeService.getEmployeeById(ars.get(i).getEmpid());
+                    System.out.println(ars.get(i).getEmpid());
+                    System.out.println(employee);
+                    if(employee != null){
+                        list.add(new AttendanceFand(employee,ars.get(i)));
+                    }
+
+                }
+                return list;
+
+            }
+        }
+        return null;
     }
 
 }

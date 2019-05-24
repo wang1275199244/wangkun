@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wk.dao.SalaryDao">
+
+    <insert id="addSalary">
+        insert into T_SALARY (S_BASE_SALARY, S_PERFORMANCE, S_OVERTIME_PAY, S_REWARD_PUNISH, S_SECURITY, S_SSALARY, S_EMPID, S_BALANCE_STATE, S_BALANCE_DATE) VALUES (#{baseSalary},#{performance},#{overtimePay},#{rewardPunish},#{security},#{ssalary},#{empid},#{balstate},#{baldate})
+    </insert>
+
+    <update id="updateSalary">
+        update T_SALARY
+        set S_BASE_SALARY,
+         S_PERFORMANCE,
+          S_OVERTIME_PAY,
+           S_REWARD_PUNISH,
+            S_SECURITY,
+             S_SSALARY,
+              S_EMPID,
+               S_BALANCE_STATE,
+                S_BALANCE_DATE
+                where S_ID = #{id}
+    </update>
+
+    <select id="getSalaryById" resultMap="salaryMap">
+        select * from T_SALARY where S_ID = #{id}
+    </select>
+
+    <select id="getSalaryByEmpid" resultMap="salaryMap">
+        select * from T_SALARY where S_EMPID = #{empid}
+    </select>
+
+    <select id="getSalary" resultMap="salaryMap">
+        select * from T_SALARY where S_BALANCE_DATE = #{baldate}
+    </select>
+
+    <resultMap id="salaryMap" type="Salary">
+        <id property="id" column="S_ID"/>
+        <result property="baseSalary" column="S_BASE_SALARY"/>
+        <result property="performance" column="S_PERFORMANCE"/>
+        <result property="overtimePay" column="S_OVERTIME_PAY"/>
+        <result property="rewardPunish" column="S_REWARD_PUNISH"/>
+        <result property="security" column="S_SECURITY"/>
+        <result property="ssalary" column="S_SSALARY"/>
+        <result property="empid" column="S_EMPID"/>
+        <result property="balstate" column="S_BALANCE_STATE"/>
+        <result property="baldate" column="S_BALANCE_DATE"/>
+    </resultMap>
+</mapper>

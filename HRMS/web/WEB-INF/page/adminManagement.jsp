@@ -27,7 +27,7 @@
             <th>培训</th>
             <th>部门管理</th>
             <th><a href="toShowAttendance">考勤</a></th>
-            <th><a href="">薪资</a></th>
+            <th><a href="toSettleSalary">结算薪资</a></th>
         </tr>
         <tr>
             <td><a href="toShowAllRI">招聘信息</a></td>

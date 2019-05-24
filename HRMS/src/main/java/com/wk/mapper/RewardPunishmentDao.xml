@@ -3,14 +3,14 @@
 <mapper namespace="com.wk.dao.RewardPunishmentDao">
 
     <insert id="addRewardPunishment">
-        insert into T_REWARD_PUNISHMENT (RP_EMP_ID, RP_CAUSE, RP_MONEY, RP_DATE) values (#{empid},#{cause},#{bonus},#{bonusDate})
+        insert into T_REWARD_PUNISHMENT (RP_EMP_ID, RP_CAUSE, RP_BONUS, RP_DATE) values (#{empid},#{cause},#{bonus},#{bonusDate})
     </insert>
 
     <update id="updateRewardPunishment">
         update T_REWARD_PUNISHMENT
         set RP_EMP_ID = #{empid},
          RP_CAUSE = #{cause},
-          RP_MONEY = #{bonus},
+          RP_BONUS = #{bonus},
            RP_DATE = #{bonusDate}
            where RP_ID = #{id}
     </update>
@@ -23,15 +23,15 @@
         select * from T_REWARD_PUNISHMENT where RP_EMP_ID = #{empid}
     </select>
 
-    <select id="getRewardPunishmentByEmpidAndDate" resultMap="rpMap">
-        select * from T_REWARD_PUNISHMENT where RP_EMP_ID = #{0} and RP_DATE like '${value}%'
+    <select id="getRewardPunishment" resultMap="rpMap">
+        select * from T_REWARD_PUNISHMENT where RP_EMP_ID = #{empid} and instr(RP_DATE,#{bonusDate})>0
     </select>
 
     <resultMap id="rpMap" type="RewardPunishment">
         <id property="id" column="RP_ID"/>
         <result property="empid" column="RP_EMP_ID"/>
         <result property="cause" column="RP_CAUSE"/>
-        <result property="bonus" column="RP_MONEY"/>
+        <result property="bonus" column="RP_BONUS"/>
         <result property="bonusDate" column="RP_DATE"/>
     </resultMap>
 </mapper>
